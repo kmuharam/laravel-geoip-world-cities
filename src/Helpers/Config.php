@@ -38,6 +38,8 @@ class Config
     {
         return __DIR__
                 .DIRECTORY_SEPARATOR
+                .'..'
+                .DIRECTORY_SEPARATOR
                 .'dump'
                 .DIRECTORY_SEPARATOR;
     }
