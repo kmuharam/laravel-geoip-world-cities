@@ -1,18 +1,25 @@
 {
-    "name": ":vendor/:package_name",
-    "type": "library",
-    "description": ":package_description",
+    "name": "moharrum/laravel-geoip-world-cities",
+    "type": "package",
+    "description": "Laravel GeoIP World Cities provides MaxMind Free World Cities Database for laravel applications.",
     "keywords": [
-        ":vendor",
-        ":package_name"
+        "moharrum",
+        "laravel-geoip-world-cities",
+        "Laravel GeoIP World Cities",
+        "Laravel",
+        "World Cities",
+        "Maxmind",
+        "GeoIP",
+        "worldcitiespop",
+        "MaxMind Free World Cities Database"
     ],
-    "homepage": "https://github.com/:vendor/:package_name",
+    "homepage": "https://github.com/moharrum/laravel-geoip-world-cities",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
-            "homepage": ":author_website",
+            "name": "Khalid Moharrum",
+            "email": "khalid.moharram@gmail.com",
+            "homepage": "https://github.com/moharrum/",
             "role": "Developer"
         }
     ],
@@ -27,16 +34,21 @@
     },
     "autoload": {
         "psr-4": {
-            ":vendor\\:package_name\\": "src"
+            "Moharrum\\LaravelGeoIPWorldCities\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            ":vendor\\:package_name\\": "tests"
+            "Moharrum\\LaravelGeoIPWorldCities\\": "tests"
         }
     },
     "scripts": {
         "test": "phpunit"
+    },
+    "minimum-stability" : "dev",
+    "support" : {
+            "source" : "https://github.com/moharrum/laravel-geoip-world-cities",
+            "issues" : "https://github.com/moharrum/laravel-geoip-world-cities/issues"
     },
     "extra": {
         "branch-alias": {
