@@ -43,4 +43,20 @@ class Config
                 .'dump'
                 .DIRECTORY_SEPARATOR;
     }
+
+    /**
+     * Returns the full path to the seeder file.
+     * 
+     * @return string
+     */
+    public static function seeder()
+    {
+        return __DIR__
+                .DIRECTORY_SEPARATOR
+                .'..'
+                .DIRECTORY_SEPARATOR
+                .'seeds'
+                .DIRECTORY_SEPARATOR
+                .'CitiesTableSeeder.php';
+    }
 }
