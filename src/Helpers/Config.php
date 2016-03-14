@@ -59,4 +59,20 @@ class Config
                 .DIRECTORY_SEPARATOR
                 .'CitiesTableSeeder.php';
     }
+
+    /**
+     * Returns the full path to the migration file.
+     * 
+     * @return string
+     */
+    public static function migration()
+    {
+        return __DIR__
+                .DIRECTORY_SEPARATOR
+                .'..'
+                .DIRECTORY_SEPARATOR
+                .'migrations'
+                .DIRECTORY_SEPARATOR
+                .'2016_03_10_114715_create_cities_table.php';
+    }
 }
