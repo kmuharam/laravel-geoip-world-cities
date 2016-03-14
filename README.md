@@ -1,70 +1,86 @@
-# :package_name
+# laravel-geoip-world-cities
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Software License][ico-license]](LICENSE.md)
-[![Build Status][ico-travis]][link-travis]
-[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
-[![Quality Score][ico-code-quality]][link-code-quality]
-[![Total Downloads][ico-downloads]][link-downloads]
+Laravel GeoIP World Cities is package that provides [MaxMind](https://www.maxmind.com/en/free-world-cities-database) Free World Cities Database support for laravel applications.
 
-**Note:** Replace ```:author_name``` ```:author_username``` ```:author_website``` ```:author_email``` ```:vendor``` ```:package_name``` ```:package_description``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md) and [composer.json](composer.json) files, then delete this line.
+**Note: This package is a bit large, ~40MB, installing and seeding the data could take a while.**
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
-PSRs you support to avoid any confusion with users and contributors.
+## Introduction
+
+Includes city, region, country, latitude and longitude. This database doesn't contain any IP addresses. It's simply a listing of all the cities in the world.
+
+This package simply loads the data provided in `worldcitiespop.txt.gz` file provided by [MaxMind](https://www.maxmind.com/) into a database and provides a `model` to manipulate the table.
 
 ## Install
 
-Via Composer
+Add `moharrum/laravel-geoip-world-cities` to `composer.json`:
 
-``` bash
-$ composer require :vendor/:package_name
-```
+    "moharrum/laravel-geoip-world-cities": "dev-master"
 
-## Usage
+Run `composer update` to pull down the latest version of Cities.
 
-``` php
-$skeleton = new League\Skeleton();
-echo $skeleton->echoPhrase('Hello, League!');
-```
+Edit `config/app.php` and add the `provider`
+
+    'providers' => [
+        Moharrum\LaravelGeoIPWorldCities\LaravelGeoIPWorldCitiesServiceProvider::class,
+    ]
+
+Optionally add the alias.
+
+    'aliases' => [
+        'Cities' => Moharrum\LaravelGeoIPWorldCities\Facade::class,
+    ]
+
+Publishing the configuration files, migration and seeder
+
+    $ php artisan vendor:publish
+
+To make sure the data is seeded insert the following code in `seeds/DatabaseSeeder.php`
+
+    //Seeding the cities
+    $this->call(CitiesTableSeeder::class);
+    $this->command->info('Seeded the cities table ...'); 
+
+Configure MySQL and PDO, insert the following code in `config/database.php`:
+
+    // ...
+    'mysql' => [
+        'driver'    => 'mysql',
+        // ...
+        'options'   => [PDO::MYSQL_ATTR_LOCAL_INFILE => true],
+        // ...
+    ],
+
+You may now run:
+
+    $ php artisan migrate --seed
+    
+After running this command the filled cities table will be available
+
+## Table structure
+
+| id    | country  | city  | city_ascii  | region  | population  | latitude  | longitude  |
+| ----- | -------- | ----- | ----------- | ------- | ----------- | --------- | ---------- |
+| 1     | XY       | XY    | XY          | XY      | XY          | XY        | XY         |
+| n     | ..       | ..    | ..          | ..      | ..          | ..        | ..         |
 
 ## Change log
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
-## Testing
-
-``` bash
-$ composer test
-```
-
 ## Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) and [CONDUCT](CONDUCT.md) for details.
 
-## Security
-
-If you discover any security related issues, please email :author_email instead of using the issue tracker.
-
 ## Credits
 
-- [:author_name][link-author]
+- [Khalid Moharrum][link-author]
 - [All Contributors][link-contributors]
 
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/:vendor/:package_name.svg?style=flat-square
-[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/:vendor/:package_name/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/:vendor/:package_name.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/:vendor/:package_name.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/:vendor/:package_name.svg?style=flat-square
-
-[link-packagist]: https://packagist.org/packages/:vendor/:package_name
-[link-travis]: https://travis-ci.org/:vendor/:package_name
-[link-scrutinizer]: https://scrutinizer-ci.com/g/:vendor/:package_name/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/:vendor/:package_name
-[link-downloads]: https://packagist.org/packages/:vendor/:package_name
-[link-author]: https://github.com/:author_username
+[link-packagist]: https://packagist.org/packages/moharrum/laravel-geoip-world-cities
+[link-downloads]: https://packagist.org/packages/moharrum/laravel-geoip-world-cities
+[link-author]: https://github.com/moharrum
 [link-contributors]: ../../contributors
