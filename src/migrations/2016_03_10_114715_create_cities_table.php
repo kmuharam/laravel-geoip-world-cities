@@ -1,8 +1,8 @@
 <?php
 
-use Moharrum\LaravelCities\Config;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Moharrum\LaravelGeoIPWorldCities\Helpers\Config;
 
 class CreateCitiesTable extends Migration
 {
