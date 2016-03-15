@@ -47,7 +47,17 @@ class CreateCitiesSeederCommand extends Command
 
             $this->info("Creating seeder file...");
 
-            $this->callSilent('make:seed', ['name' => Config::$SEEDER_FILE_NAME]);
+            $this->callSilent('make:seed', [
+                                            'name' => substr(
+                                                        Config::$SEEDER_FILE_NAME,
+                                                        0,
+                                                        strpos(
+                                                            Config::$SEEDER_FILE_NAME,
+                                                            '.'
+                                                        )
+                                                    )
+                                            ]
+                    );
 
             $inputFile = file_get_contents(Config::seederPath());
 
