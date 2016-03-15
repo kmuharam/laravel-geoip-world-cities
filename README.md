@@ -37,7 +37,7 @@ Publishing the configuration file, this is where you can change the default tabl
 Publishing the migration and seeder files
 
     $ php artisan cities:migration
-    $ php artisan vendor:seeder
+    $ php artisan cities:seeder
 
 To make sure the data is seeded insert the following code in `seeds/DatabaseSeeder.php`
 
