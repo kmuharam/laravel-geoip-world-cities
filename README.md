@@ -2,19 +2,19 @@
 
 Laravel GeoIP World Cities is package that provides [MaxMind](https://www.maxmind.com/en/free-world-cities-database) Free World Cities Database support for laravel applications.
 
-**Note: This package is a bit large, ~40MB, installing and seeding the data could take a while.**
-
 ## Introduction
 
 Includes city, region, country, latitude and longitude. This database doesn't contain any IP addresses. It's simply a listing of all the cities in the world.
 
-This package simply loads the data provided in `worldcitiespop.txt.gz` file provided by [MaxMind](https://www.maxmind.com/) into a database and provides a `model` to manipulate the table.
+This package simply loads the data provided in `worldcitiespop.txt.gz` file by [MaxMind](https://www.maxmind.com/) into a database and provides a `City` model to query the table.
 
 ## Install
 
+**Note: This package is a bit large, ~40MB, installing and seeding the data could take a while.**
+
 Add `moharrum/laravel-geoip-world-cities` to `composer.json`:
 
-    "moharrum/laravel-geoip-world-cities": "dev-master"
+    "moharrum/laravel-geoip-world-cities": "1.*"
 
 Run `composer update` to pull down the latest version of Cities.
 
@@ -30,14 +30,20 @@ Optionally add the alias.
         'Cities' => Moharrum\LaravelGeoIPWorldCities\Facade::class,
     ]
 
+Configure MySQL and PDO, insert the following code in `config/database.php`:
+
+    'mysql' => [
+        'options'   => [PDO::MYSQL_ATTR_LOCAL_INFILE => true],
+    ],
+
 Publishing the configuration file, this is where you can change the default table name
 
-    $ php artisan vendor:publish
+    php artisan vendor:publish
 
 Publishing the migration and seeder files
 
-    $ php artisan cities:migration
-    $ php artisan cities:seeder
+    php artisan cities:migration
+    php artisan cities:seeder
 
 To make sure the data is seeded insert the following code in `seeds/DatabaseSeeder.php`
 
@@ -45,32 +51,19 @@ To make sure the data is seeded insert the following code in `seeds/DatabaseSeed
     $this->call(CitiesTableSeeder::class);
     $this->command->info('Seeded the cities table ...'); 
 
-Configure MySQL and PDO, insert the following code in `config/database.php`:
-
-    // ...
-    'mysql' => [
-        'driver'    => 'mysql',
-        // ...
-        'options'   => [PDO::MYSQL_ATTR_LOCAL_INFILE => true],
-        // ...
-    ],
-
 You may now run:
 
-    $ php artisan migrate --seed
+    php artisan migrate --seed
     
 After running this command the filled cities table will be available
 
 ## Table structure
 
-| id    | country  | city  | city_ascii  | region  | population  | latitude  | longitude  |
-| ----- | -------- | ----- | ----------- | ------- | ----------- | --------- | ---------- |
-| 1     | XY       | XY    | XY          | XY      | XY          | XY        | XY         |
-| n     | ..       | ..    | ..          | ..      | ..          | ..        | ..         |
-
-## Change log
-
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+| id       | country  | city      | city_ascii  | region  | population  | latitude  | longitude  |
+| -------- | ---------| --------- | ----------- | ------- | ----------- | --------- | ---------- |
+| ..       | ..       | ..        | ..          | ..      | ..          | ..        | ..         |
+| 2685662  | sd       | Khartoum  | khartoum    | 29      | 1974780     | 15.588056 | 32.534167  |
+| ..       | ..       | ..        | ..          | ..      | ..          | ..        | ..         |
 
 ## Contributing
 
