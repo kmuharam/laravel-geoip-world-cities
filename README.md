@@ -30,13 +30,18 @@ Optionally add the alias.
         'Cities' => Moharrum\LaravelGeoIPWorldCities\Facade::class,
     ]
 
-Publishing the configuration files, migration and seeder
+Publishing the configuration file, this is where you can change the default table name
 
     $ php artisan vendor:publish
 
+Publishing the migration and seeder files
+
+    $ php artisan cities:migration
+    $ php artisan vendor:seeder
+
 To make sure the data is seeded insert the following code in `seeds/DatabaseSeeder.php`
 
-    //Seeding the cities
+    // Seeding the cities
     $this->call(CitiesTableSeeder::class);
     $this->command->info('Seeded the cities table ...'); 
 
