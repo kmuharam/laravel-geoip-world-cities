@@ -3,6 +3,8 @@
 namespace Moharrum\LaravelGeoIPWorldCities;
 
 use Illuminate\Support\ServiceProvider;
+use Moharrum\LaravelGeoIPWorldCities\Console\CreateCitiesSeederCommand;
+use Moharrum\LaravelGeoIPWorldCities\Console\CreateCitiesMigrationCommand;
 
 class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
 {
@@ -35,7 +37,22 @@ class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
         $this->app['cities'] = $this->app->share(function ($app) {
                 return new City;
         });
+
         $this->mergeConfig();
+
+        $this->app['command.cities.migration'] = $this->app->share(function($app)
+        {
+            return new CreateCitiesMigrationCommand($app);
+        });
+
+        $this->app['command.cities.seeder'] = $this->app->share(function($app)
+        {
+            return new CreateCitiesSeederCommand($app);
+        });
+
+        $this->commands('command.cities.migration');
+
+        $this->commands('command.cities.seeder');
     }
 
     /**
