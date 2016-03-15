@@ -12,14 +12,14 @@ namespace Moharrum\LaravelGeoIPWorldCities;
  * @version    0.1
  */
 
-use Illuminate\Support\Facades\Facade;
+use Illuminate\Support\Facades\Facade as IlluminateFacade;
 
 /**
  * @version    0.1
  * 
  * @author Khalid Moharrum <khalid.moharram@gmail.com>
  */
-class City extends Facade
+class Facade extends IlluminateFacade
 {
     protected static function getFacadeAccessor()
     {
