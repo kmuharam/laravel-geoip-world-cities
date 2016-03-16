@@ -1,5 +1,7 @@
 # laravel-geoip-world-cities
 
+[![Latest Stable Version](https://poser.pugx.org/moharrum/laravel-geoip-world-cities/v/stable)](https://packagist.org/packages/moharrum/laravel-geoip-world-cities) [![Total Downloads](https://poser.pugx.org/moharrum/laravel-geoip-world-cities/downloads)](https://packagist.org/packages/moharrum/laravel-geoip-world-cities) [![Latest Unstable Version](https://poser.pugx.org/moharrum/laravel-geoip-world-cities/v/unstable)](https://packagist.org/packages/moharrum/laravel-geoip-world-cities) [![License](https://poser.pugx.org/moharrum/laravel-geoip-world-cities/license)](https://packagist.org/packages/moharrum/laravel-geoip-world-cities)
+
 Laravel GeoIP World Cities is package that provides [MaxMind](https://www.maxmind.com/en/free-world-cities-database) Free World Cities Database support for laravel applications.
 
 ## Contents
@@ -20,8 +22,6 @@ Includes city, region, country, latitude and longitude. This database doesn't co
 This package simply loads the data provided in `worldcitiespop.txt.gz` file by [MaxMind](https://www.maxmind.com/) into a database and provides a `City` model to query the table.
 
 ## Choosing your version
-
-[![Latest Stable Version](https://poser.pugx.org/moharrum/laravel-geoip-world-cities/v/stable)](https://packagist.org/packages/moharrum/laravel-geoip-world-cities) [![Total Downloads](https://poser.pugx.org/moharrum/laravel-geoip-world-cities/downloads)](https://packagist.org/packages/moharrum/laravel-geoip-world-cities) [![Latest Unstable Version](https://poser.pugx.org/moharrum/laravel-geoip-world-cities/v/unstable)](https://packagist.org/packages/moharrum/laravel-geoip-world-cities) [![License](https://poser.pugx.org/moharrum/laravel-geoip-world-cities/license)](https://packagist.org/packages/moharrum/laravel-geoip-world-cities)
 
 If you are looking for the Laravel 4 version, take a look [Branch 1.0](https://github.com/moharrum/laravel-geoip-world-cities/tree/1.0).
 
