@@ -44,14 +44,9 @@
     "scripts": {
         "test": "phpunit"
     },
-    "minimum-stability" : "dev",
     "support" : {
             "source" : "https://github.com/moharrum/laravel-geoip-world-cities",
             "issues" : "https://github.com/moharrum/laravel-geoip-world-cities/issues"
     },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.0-dev"
-        }
-    }
+    "minimum-stability" : "dev"
 }
