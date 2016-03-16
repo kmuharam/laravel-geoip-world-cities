@@ -5,13 +5,12 @@
     "keywords": [
         "moharrum",
         "laravel-geoip-world-cities",
-        "Laravel GeoIP World Cities",
         "Laravel",
-        "World Cities",
-        "Maxmind",
-        "GeoIP",
+        "world-cities",
+        "maxmind",
+        "geoip",
         "worldcitiespop",
-        "MaxMind Free World Cities Database"
+        "maxmind-free-world-cities-database"
     ],
     "homepage": "https://github.com/moharrum/laravel-geoip-world-cities",
     "license": "MIT",
