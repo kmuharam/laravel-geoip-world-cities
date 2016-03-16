@@ -8,7 +8,14 @@ use Moharrum\LaravelGeoIPWorldCities\Helpers\Config;
 class CreateCitiesMigrationCommand extends Command
 {
     /**
-     * The name and signature of the console command.
+     * The name of the console command.
+     *
+     * @var string
+     */
+    protected $name = 'cities:migration';
+
+    /**
+     * The signature of the console command.
      *
      * @var string
      */
