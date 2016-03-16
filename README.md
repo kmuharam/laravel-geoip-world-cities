@@ -106,6 +106,23 @@ The package provides a `City` model which can be used to query the data
     \Moharrum\LaravelGeoIPWorldCities\City::whereCity('Khartoum')->first();
 ```
 
+## Troubleshooting
+
+If you are getting a `ReflectionException` when running trying to seed
+
+```php
+    [ReflectionException]                   
+    Class CitiesTableSeeder does not exist 
+```
+
+run:
+
+```php
+    composer dump-autoload
+```
+
+and try again.
+
 ## Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) and [CONDUCT](CONDUCT.md) for details.
