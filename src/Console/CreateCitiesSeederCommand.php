@@ -54,17 +54,24 @@ class CreateCitiesSeederCommand extends Command
 
             $this->info("Creating seeder file...");
 
-            $this->callSilent('make:seed', [
-                                            'name' => substr(
-                                                        Config::$SEEDER_FILE_NAME,
-                                                        0,
-                                                        strpos(
+            // Laravel 5.0 does not have make:seed command
+            // in that case ignore the command and copy the contents
+            // of the file directly.
+            try {
+                $this->callSilent('make:seed', [
+                                                'name' => substr(
                                                             Config::$SEEDER_FILE_NAME,
-                                                            '.'
+                                                            0,
+                                                            strpos(
+                                                                Config::$SEEDER_FILE_NAME,
+                                                                '.'
+                                                            )
                                                         )
-                                                    )
-                                            ]
-                    );
+                                                ]
+                        );
+            } catch (\Exception $ex) {
+
+            }
 
             $inputFile = file_get_contents(Config::seederPath());
 
