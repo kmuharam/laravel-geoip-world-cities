@@ -25,9 +25,9 @@ This package simply loads the data provided in `worldcitiespop.txt.gz` file by [
 
 If you are looking for the Laravel 4 version, take a look [Branch 1.0](https://github.com/moharrum/laravel-geoip-world-cities/tree/1.0).
 
-If you are looking for the Laravel 5.0 version, take a look [Branch 2.0](https://github.com/moharrum/laravel-geoip-world-cities/tree/2.0).
+If you are looking for the Laravel 5.0.* version, take a look [Branch 2.0](https://github.com/moharrum/laravel-geoip-world-cities/tree/2.0).
 
-If you are looking for the Laravel 5.2 version, the following instructions are for you.
+If you are looking for the Laravel 5.1.* and 5.2.* version, the following instructions are for you.
 
 ## Installation
 
