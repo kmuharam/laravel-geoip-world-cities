@@ -11,6 +11,7 @@ Laravel GeoIP World Cities is package that provides [MaxMind](https://www.maxmin
 - [Installation](#installation)
 - [Table structure](#table-structure)
 - [Example](#example)
+- [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
 - [Credits](#credits)
 - [License](#license)
@@ -108,7 +109,7 @@ The package provides a `City` model which can be used to query the data
 
 ## Troubleshooting
 
-If you are getting a `ReflectionException` when running trying to seed
+If you are getting a `ReflectionException` when trying to seed
 
 ```php
     [ReflectionException]                   
