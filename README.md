@@ -98,9 +98,9 @@ After running this command the filled cities table will be available
 
 The package provides a `City` model which can be used to query the data
 
-    ```php
-        \Moharrum\LaravelGeoIPWorldCities\City::whereCity('Khartoum')->first();
-    ```
+```php
+    \Moharrum\LaravelGeoIPWorldCities\City::whereCity('Khartoum')->first();
+```
 
 ## Contributing
 
