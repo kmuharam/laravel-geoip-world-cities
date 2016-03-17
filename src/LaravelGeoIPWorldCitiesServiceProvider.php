@@ -3,6 +3,7 @@
 namespace Moharrum\LaravelGeoIPWorldCities;
 
 use Illuminate\Support\ServiceProvider;
+use Moharrum\LaravelGeoIPWorldCities\Helpers\Config;
 use Moharrum\LaravelGeoIPWorldCities\Console\CreateCitiesSeederCommand;
 use Moharrum\LaravelGeoIPWorldCities\Console\CreateCitiesMigrationCommand;
 
@@ -47,7 +48,7 @@ class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
     private function publishConfig()
     {
         $this->publishes([
-            __DIR__.'/config/config.php' => config_path('cities.php')
+            Config::configFilePath() => config_path(Config::$PUBLISHED_CONFIG_FILE_NAME)
         ]);
     }
 
@@ -57,7 +58,7 @@ class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
     private function bind()
     {
         $this->app['cities'] = $this->app->share(function ($app) {
-                return new City;
+            return new City;
         });
     }
 
@@ -66,7 +67,17 @@ class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
      */
     private function mergeConfig()
     {
-        $this->mergeConfigFrom(__DIR__.'/config/config.php', 'cities');
+        $this->mergeConfigFrom(
+            Config::configFilePath(),
+            substr(
+                Config::$PUBLISHED_CONFIG_FILE_NAME,
+                0,
+                strpos(
+                    Config::$PUBLISHED_CONFIG_FILE_NAME,
+                    '.'
+                )
+            )
+        );
     }
 
     /**
@@ -74,8 +85,7 @@ class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
      */
     private function registerMigrationCommand()
     {
-        $this->app['command.cities.migration'] = $this->app->share(function($app)
-        {
+        $this->app['command.cities.migration'] = $this->app->share(function($app) {
             return new CreateCitiesMigrationCommand($app);
         });
 
@@ -87,8 +97,7 @@ class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
      */
     private function registerSeederCommand()
     {
-        $this->app['command.cities.seeder'] = $this->app->share(function($app)
-        {
+        $this->app['command.cities.seeder'] = $this->app->share(function($app) {
             return new CreateCitiesSeederCommand($app);
         });
 
