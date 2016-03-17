@@ -54,7 +54,7 @@ class Config
                     Config::$PUBLISHED_CONFIG_FILE_NAME,
                     '.'
                 )
-            ).'table'
+            ).'.table'
         );
     }
 
