@@ -2,11 +2,23 @@
 
 namespace Moharrum\LaravelGeoIPWorldCities;
 
+/*
+ * \Moharrum\LaravelGeoIPWorldCities for Laravel 4
+ *
+ * Copyright (c) 2015 - 2016 LaravelGeoIPWorldCities
+ *
+ * @copyright  Copyright (c) 2015 - 2016 \Moharrum\LaravelGeoIPWorldCities
+ * 
+ * @license http://opensource.org/licenses/MIT MIT license
+ */
+
 use Illuminate\Support\ServiceProvider;
-use Moharrum\LaravelGeoIPWorldCities\Helpers\Config;
 use Moharrum\LaravelGeoIPWorldCities\Console\CreateCitiesSeederCommand;
 use Moharrum\LaravelGeoIPWorldCities\Console\CreateCitiesMigrationCommand;
 
+/**
+ * @author Khalid Moharrum <khalid.moharram@gmail.com>
+ */
 class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
 {
     /**
@@ -15,27 +27,21 @@ class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
      * @var bool
      */
     protected $defer = false;
-    
+
     /**
      * Perform post-registration booting of services.
-     *
-     * @return void
      */
     public function boot()
     {
-        $this->publishConfig();
+        $this->registerNamespaces();
     }
 
     /**
      * Register any package services.
-     *
-     * @return void
      */
     public function register()
     {
         $this->bind();
-
-        $this->mergeConfig();
 
         $this->registerMigrationCommand();
 
@@ -43,13 +49,11 @@ class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
     }
 
     /**
-     * Publish config files.
+     * Register the package's component namespaces.
      */
-    private function publishConfig()
+    private function registerNamespaces()
     {
-        $this->publishes([
-            Config::configFilePath() => config_path(Config::$PUBLISHED_CONFIG_FILE_NAME)
-        ]);
+        $this->package('moharrum/laravel-geoip-world-cities', null, __DIR__);
     }
 
     /**
@@ -63,30 +67,12 @@ class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
     }
 
     /**
-     * Merges user's and cities's configs.
-     */
-    private function mergeConfig()
-    {
-        $this->mergeConfigFrom(
-            Config::configFilePath(),
-            substr(
-                Config::$PUBLISHED_CONFIG_FILE_NAME,
-                0,
-                strpos(
-                    Config::$PUBLISHED_CONFIG_FILE_NAME,
-                    '.'
-                )
-            )
-        );
-    }
-
-    /**
      * Register the migration command.
      */
     private function registerMigrationCommand()
     {
-        $this->app['command.cities.migration'] = $this->app->share(function($app) {
-            return new CreateCitiesMigrationCommand($app);
+        $this->app['command.cities.migration'] = $this->app->share(function ($app) {
+            return new CreateCitiesMigrationCommand;
         });
 
         $this->commands('command.cities.migration');
@@ -97,10 +83,20 @@ class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
      */
     private function registerSeederCommand()
     {
-        $this->app['command.cities.seeder'] = $this->app->share(function($app) {
-            return new CreateCitiesSeederCommand($app);
+        $this->app['command.cities.seeder'] = $this->app->share(function ($app) {
+            return new CreateCitiesSeederCommand;
         });
 
         $this->commands('command.cities.seeder');
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return ['cities'];
     }
 }
