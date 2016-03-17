@@ -20,6 +20,16 @@ namespace Moharrum\LaravelGeoIPWorldCities\Helpers;
 class Config
 {
     /**
+     * @var string The config file name.
+     */
+    public static $CONFIG_FILE_NAME = 'config.php';
+
+    /**
+     * @var string The config file name.
+     */
+    public static $PUBLISHED_CONFIG_FILE_NAME = 'cities.php';
+
+    /**
      * @var string The seeder file name.
      */
     public static $SEEDER_FILE_NAME = 'CitiesTableSeeder.php';
@@ -28,6 +38,7 @@ class Config
      * @var string The migration file name.
      */
     public static $MIGRATION_FILE_NAME = '2016_03_10_114715_create_cities_table.php';
+
     /**
      * Returns the cities table name from config files.
      * 
@@ -35,7 +46,16 @@ class Config
      */
     public static function citiesTableName()
     {
-        return config('cities.table');
+        return config(
+            substr(
+                Config::$PUBLISHED_CONFIG_FILE_NAME,
+                0,
+                strpos(
+                    Config::$PUBLISHED_CONFIG_FILE_NAME,
+                    '.'
+                )
+            ).'table'
+        );
     }
 
     /**
@@ -83,5 +103,21 @@ class Config
                 .'migrations'
                 .DIRECTORY_SEPARATOR
                 .static::$MIGRATION_FILE_NAME;
+    }
+
+    /**
+     * Returns the full path to the config file.
+     * 
+     * @return string
+     */
+    public static function configFilePath()
+    {
+        return __DIR__
+                .DIRECTORY_SEPARATOR
+                .'..'
+                .DIRECTORY_SEPARATOR
+                .'config'
+                .DIRECTORY_SEPARATOR
+                .static::$CONFIG_FILE_NAME;
     }
 }
