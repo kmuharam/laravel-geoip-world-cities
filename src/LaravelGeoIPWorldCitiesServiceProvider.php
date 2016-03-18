@@ -109,4 +109,14 @@ class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
 
         $this->commands('command.cities.seeder');
     }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return ['cities'];
+    }
 }
