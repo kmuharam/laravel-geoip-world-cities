@@ -2,11 +2,24 @@
 
 namespace Moharrum\LaravelGeoIPWorldCities;
 
+/*
+ * \Moharrum\LaravelGeoIPWorldCities for Laravel 5
+ *
+ * Copyright (c) 2015 - 2016 LaravelGeoIPWorldCities
+ *
+ * @copyright  Copyright (c) 2015 - 2016 \Moharrum\LaravelGeoIPWorldCities
+ * 
+ * @license http://opensource.org/licenses/MIT MIT license
+ */
+
 use Illuminate\Support\ServiceProvider;
 use Moharrum\LaravelGeoIPWorldCities\Helpers\Config;
 use Moharrum\LaravelGeoIPWorldCities\Console\CreateCitiesSeederCommand;
 use Moharrum\LaravelGeoIPWorldCities\Console\CreateCitiesMigrationCommand;
 
+/**
+ * @author Khalid Moharrum <khalid.moharram@gmail.com>
+ */
 class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
 {
     /**
@@ -48,7 +61,7 @@ class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
     private function publishConfig()
     {
         $this->publishes([
-            Config::configFilePath() => config_path(Config::$PUBLISHED_CONFIG_FILE_NAME)
+            Config::localConfigRealpath() => config_path(Config::$PUBLISHED_CONFIG_FILE_NAME)
         ]);
     }
 
@@ -68,15 +81,8 @@ class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
     private function mergeConfig()
     {
         $this->mergeConfigFrom(
-            Config::configFilePath(),
-            substr(
-                Config::$PUBLISHED_CONFIG_FILE_NAME,
-                0,
-                strpos(
-                    Config::$PUBLISHED_CONFIG_FILE_NAME,
-                    '.'
-                )
-            )
+            Config::localConfigRealpath(),
+            Config::configKey()
         );
     }
 
@@ -86,7 +92,7 @@ class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
     private function registerMigrationCommand()
     {
         $this->app['command.cities.migration'] = $this->app->share(function($app) {
-            return new CreateCitiesMigrationCommand($app);
+            return new CreateCitiesMigrationCommand;
         });
 
         $this->commands('command.cities.migration');
@@ -98,7 +104,7 @@ class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
     private function registerSeederCommand()
     {
         $this->app['command.cities.seeder'] = $this->app->share(function($app) {
-            return new CreateCitiesSeederCommand($app);
+            return new CreateCitiesSeederCommand;
         });
 
         $this->commands('command.cities.seeder');
