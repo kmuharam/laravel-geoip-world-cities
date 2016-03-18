@@ -1,6 +1,6 @@
 {
     "name": "moharrum/laravel-geoip-world-cities",
-    "type": "package",
+    "type": "library",
     "description": "Laravel GeoIP World Cities provides MaxMind Free World Cities Database for laravel applications.",
     "keywords": [
         "moharrum",
