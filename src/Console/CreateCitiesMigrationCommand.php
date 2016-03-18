@@ -85,7 +85,7 @@ class CreateCitiesMigrationCommand extends Command
 
             return $this->error(
                         'There was an error creating the migration file, '
-                        .'check write permissions for app/database/migrations directory'
+                        .'check write permissions for database/migrations directory'
                         .PHP_EOL
                         .PHP_EOL
                         .'If you think this is a bug, please submit a bug report '
