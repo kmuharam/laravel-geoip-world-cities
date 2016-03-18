@@ -3,21 +3,19 @@
 namespace Moharrum\LaravelGeoIPWorldCities;
 
 /*
- * \Moharrum\LaravelGeoIPWorldCities
+ * \Moharrum\LaravelGeoIPWorldCities for Laravel 5
  *
  * Copyright (c) 2015 - 2016 LaravelGeoIPWorldCities
  *
  * @copyright  Copyright (c) 2015 - 2016 \Moharrum\LaravelGeoIPWorldCities
+ * 
  * @license http://opensource.org/licenses/MIT MIT license
- * @version    0.3
  */
 
 use Illuminate\Database\Eloquent\Model;
 use Moharrum\LaravelGeoIPWorldCities\Helpers\Config;
 
 /**
- * @version    0.3
- * 
  * @author Khalid Moharrum <khalid.moharram@gmail.com>
  */
 class City extends Model
