@@ -1,10 +1,23 @@
 <?php
 
+/*
+ * \Moharrum\LaravelGeoIPWorldCities for Laravel 5
+ *
+ * Copyright (c) 2015 - 2016 LaravelGeoIPWorldCities
+ *
+ * @copyright  Copyright (c) 2015 - 2016 \Moharrum\LaravelGeoIPWorldCities
+ * 
+ * @license http://opensource.org/licenses/MIT MIT license
+ */
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Moharrum\LaravelGeoIPWorldCities\Helpers\Config;
 
+/**
+ * @author Khalid Moharrum <khalid.moharram@gmail.com>
+ */
 class CitiesTableSeeder extends Seeder
 {
     /**
@@ -14,7 +27,7 @@ class CitiesTableSeeder extends Seeder
      */
     public function run()
     {
-        foreach($this->dump() as $dumpPart) {
+        foreach($this->dumpFiles() as $dumpPart) {
 
             $query = "LOAD DATA LOCAL INFILE '"
                     . $dumpPart . "'
@@ -40,7 +53,7 @@ class CitiesTableSeeder extends Seeder
      * 
      * @return array
      */
-    protected function dump()
+    private function dumpFiles()
     {
         $files = [];
 
@@ -49,7 +62,7 @@ class CitiesTableSeeder extends Seeder
         }
 
         sort($files);
-        
+
         return $files;
     }
 }
