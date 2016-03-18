@@ -3,18 +3,16 @@
 namespace Moharrum\LaravelGeoIPWorldCities\Helpers;
 
 /*
- * \Moharrum\LaravelGeoIPWorldCities
+ * \Moharrum\LaravelGeoIPWorldCities for Laravel 5
  *
  * Copyright (c) 2015 - 2016 LaravelGeoIPWorldCities
  *
  * @copyright  Copyright (c) 2015 - 2016 \Moharrum\LaravelGeoIPWorldCities
+ * 
  * @license http://opensource.org/licenses/MIT MIT license
- * @version    0.4
  */
 
 /**
- * @version    0.4
- * 
  * @author Khalid Moharrum <khalid.moharram@gmail.com>
  */
 class Config
@@ -46,16 +44,7 @@ class Config
      */
     public static function citiesTableName()
     {
-        return config(
-            substr(
-                Config::$PUBLISHED_CONFIG_FILE_NAME,
-                0,
-                strpos(
-                    Config::$PUBLISHED_CONFIG_FILE_NAME,
-                    '.'
-                )
-            ).'.table'
-        );
+        return config(static::configKey().'.table');
     }
 
     /**
@@ -74,11 +63,11 @@ class Config
     }
 
     /**
-     * Returns the full path to the seeder file.
+     * Returns the full path to the local seeder file.
      * 
      * @return string
      */
-    public static function seederPath()
+    public static function localSeederPath()
     {
         return __DIR__
                 .DIRECTORY_SEPARATOR
@@ -90,11 +79,27 @@ class Config
     }
 
     /**
-     * Returns the full path to the migration file.
+     * Returns the full path to the published seeder file.
      * 
      * @return string
      */
-    public static function migrationPath()
+    public static function publishedSeederRealpath()
+    {
+        return base_path(
+                'database'
+                .DIRECTORY_SEPARATOR
+                .'seeds'
+                .DIRECTORY_SEPARATOR
+                .self::$SEEDER_FILE_NAME
+            );
+    }
+
+    /**
+     * Returns the full path to the local migration file.
+     * 
+     * @return string
+     */
+    public static function localMigrationRealpath()
     {
         return __DIR__
                 .DIRECTORY_SEPARATOR
@@ -106,11 +111,27 @@ class Config
     }
 
     /**
-     * Returns the full path to the config file.
+     * Returns the full path to the published migration file.
      * 
      * @return string
      */
-    public static function configFilePath()
+    public static function publishedMigrationRealpath()
+    {
+        return base_path(
+                'database'
+                .DIRECTORY_SEPARATOR
+                .'migrations'
+                .DIRECTORY_SEPARATOR
+                .self::$MIGRATION_FILE_NAME
+            );
+    }
+
+    /**
+     * Returns the full path to the local config file.
+     * 
+     * @return string
+     */
+    public static function localConfigRealpath()
     {
         return __DIR__
                 .DIRECTORY_SEPARATOR
@@ -119,5 +140,27 @@ class Config
                 .'config'
                 .DIRECTORY_SEPARATOR
                 .static::$CONFIG_FILE_NAME;
+    }
+
+    public static function seederNameKey()
+    {
+        return static::keyArgFromName(static::$SEEDER_FILE_NAME);
+    }
+
+    public static function configKey()
+    {
+        return static::keyArgFromName(static::$PUBLISHED_CONFIG_FILE_NAME);
+    }
+
+    private static function keyArgFromName($name)
+    {
+        return substr(
+                    $name,
+                    0,
+                    strpos(
+                        $name,
+                        '.'
+                    )
+                );
     }
 }
