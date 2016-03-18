@@ -72,14 +72,7 @@ class CreateCitiesSeederCommand extends Command
         // of the file directly.
         try {
             $this->callSilent('make:seed', [
-                                            'name' => substr(
-                                                        Config::$SEEDER_FILE_NAME,
-                                                        0,
-                                                        strpos(
-                                                            Config::$SEEDER_FILE_NAME,
-                                                            '.'
-                                                        )
-                                                    )
+                                            'name' => Config::seederNameKey()
                                             ]
                     );
         } catch (\Exception $ex) {
