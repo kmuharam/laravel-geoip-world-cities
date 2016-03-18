@@ -1,6 +1,7 @@
 <?php
 
 namespace Moharrum\LaravelGeoIPWorldCities\Console;
+
 /*
  * \Moharrum\LaravelGeoIPWorldCities for Laravel 5
  *
