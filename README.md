@@ -110,10 +110,13 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) and [CONDUCT](CONDUCT.md) for details
 
 ## Credits
 
+- [MaxMind](https://www.maxmind.com)
 - [Khalid Moharrum][link-author]
 - [All Contributors][link-contributors]
 
 ## License
+
+MaxMind WorldCities [License](http://download.maxmind.com/download/geoip/database/LICENSE_WC.txt).
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
