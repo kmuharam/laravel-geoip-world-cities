@@ -134,9 +134,9 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) and [CONDUCT](CONDUCT.md) for details
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-
 MaxMind WorldCities [License](http://download.maxmind.com/download/geoip/database/LICENSE_WC.txt).
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
 [link-packagist]: https://packagist.org/packages/moharrum/laravel-geoip-world-cities
 [link-downloads]: https://packagist.org/packages/moharrum/laravel-geoip-world-cities
