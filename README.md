@@ -128,12 +128,15 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) and [CONDUCT](CONDUCT.md) for details
 
 ## Credits
 
+- [MaxMind](https://www.maxmind.com)
 - [Khalid Moharrum][link-author]
 - [All Contributors][link-contributors]
 
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+MaxMind WorldCities [License](http://download.maxmind.com/download/geoip/database/LICENSE_WC.txt).
 
 [link-packagist]: https://packagist.org/packages/moharrum/laravel-geoip-world-cities
 [link-downloads]: https://packagist.org/packages/moharrum/laravel-geoip-world-cities
