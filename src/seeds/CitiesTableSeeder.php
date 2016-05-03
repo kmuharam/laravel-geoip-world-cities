@@ -27,7 +27,7 @@ class CitiesTableSeeder extends Seeder
     {
         foreach ($this->dumpFiles() as $dumpPart) {
             $query = "LOAD DATA LOCAL INFILE '"
-                    .$dumpPart."'
+                    . str_replace('\\', '/', $dumpPart) ."'
                     INTO TABLE `".Config::citiesTableName()."` 
                         FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"'
                         LINES TERMINATED BY '\n' IGNORE 1 LINES
