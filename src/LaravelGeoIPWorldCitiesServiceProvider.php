@@ -70,6 +70,14 @@ class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
      */
     private function bind()
     {
+        if(((double) $this->app::VERSION) === 5.4) {
+            $this->app->singleton('cities', function ($app) {
+                return new City;
+            });
+
+            return;
+        }
+
         $this->app['cities'] = $this->app->share(function ($app) {
             return new City;
         });
@@ -91,9 +99,15 @@ class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
      */
     private function registerMigrationCommand()
     {
-        $this->app['command.cities.migration'] = $this->app->share(function($app) {
-            return new CreateCitiesMigrationCommand;
-        });
+        if(((double) $this->app::VERSION) === 5.4) {
+            $this->app->singleton('command.cities.migration', function ($app) {
+                return new CreateCitiesMigrationCommand;
+            });
+        } else {
+            $this->app['command.cities.migration'] = $this->app->share(function($app) {
+                return new CreateCitiesMigrationCommand;
+            });
+        }
 
         $this->commands('command.cities.migration');
     }
@@ -103,9 +117,15 @@ class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
      */
     private function registerSeederCommand()
     {
-        $this->app['command.cities.seeder'] = $this->app->share(function($app) {
-            return new CreateCitiesSeederCommand;
-        });
+        if(((double) $this->app::VERSION) === 5.4) {
+            $this->app->singleton('command.cities.seeder', function ($app) {
+                return new CreateCitiesSeederCommand;
+            });
+        } else {
+            $this->app['command.cities.seeder'] = $this->app->share(function($app) {
+                return new CreateCitiesSeederCommand;
+            });
+        }
 
         $this->commands('command.cities.seeder');
     }
