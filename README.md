@@ -130,6 +130,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) and [CONDUCT](CONDUCT.md) for details
 
 - [MaxMind](https://www.maxmind.com)
 - [Khalid Moharrum][link-author]
+- [MCMatters](https://github.com/MCMatters)
 - [All Contributors][link-contributors]
 
 ## License
