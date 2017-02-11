@@ -2,22 +2,9 @@
 
 All Notable changes to `moharrum/laravel-geoip-world-cities/releases` will be documented in this file.
 
-## NEXT - YYYY-MM-DD
+## 2.3 - 2017-02-11
 
-### Added
-- Nothing
-
-### Deprecated
-- Nothing
-
-### Fixed
-- Nothing
-
-### Removed
-- Nothing
-
-### Security
-- Nothing
+Refactoring and re-organizing code.
 
 ## 2.2 - 2017-02-11
 
