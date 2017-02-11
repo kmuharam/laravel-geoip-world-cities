@@ -14,7 +14,6 @@ namespace Moharrum\LaravelGeoIPWorldCities\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
-use Moharrum\LaravelGeoIPWorldCities\Helpers\Config;
 
 /**
  * @author Khalid Moharrum <khalid.moharram@gmail.com>
@@ -43,6 +42,11 @@ class CreateCitiesMigrationCommand extends Command
     protected $description = 'Create the cities table migration file.';
 
     /**
+     * @var string The migration file name.
+     */
+    public $migration_file = '2016_03_10_114715_create_cities_table.php';
+
+    /**
      * Create a new command instance.
      *
      * @return void
@@ -59,33 +63,30 @@ class CreateCitiesMigrationCommand extends Command
      */
     public function handle()
     {
-        if (File::exists(Config::publishedMigrationRealpath())) {
-            if (!$this->confirm('The migration file already exists, overwrite it? [Yes|no]')) {
-                $this->line('');
+        $exists = false;
 
+        if (File::exists($this->publishedMigrationRealpath())) {
+            $exists = true;
+
+            if (!$this->confirm('The migration file already exists, overwrite it? [Yes|no]')) {
                 return $this->info('Okay, no changes made to the file.');
             }
         }
 
-        $inputFile = file_get_contents(Config::localMigrationRealpath());
+        $inputFile = file_get_contents($this->localMigrationRealpath());
 
-        $outputFile = fopen(
-                        Config::publishedMigrationRealpath(),
-                        'w'
-                    );
+        $outputFile = fopen($this->publishedMigrationRealpath(), 'w');
 
         if ($inputFile && $outputFile) {
             fwrite($outputFile, $inputFile);
 
             fclose($outputFile);
         } else {
-            File::delete(Config::publishedSeederRealpath());
-
-            $this->line('');
+            File::delete($this->publishedMigrationRealpath());
 
             return $this->error(
                         'There was an error creating the migration file, '
-                        .'check write permissions for database/migrations directory'
+                        .'check write permissions for ' . base_path('database') . DIRECTORY_SEPARATOR . 'migrations'
                         .PHP_EOL
                         .PHP_EOL
                         .'If you think this is a bug, please submit a bug report '
@@ -93,8 +94,44 @@ class CreateCitiesMigrationCommand extends Command
                     );
         }
 
-        $this->line('');
+        if(! $exists) {
+            $this->info('Okay, migration file created successfully.');
 
-        $this->info('Okay, migration file created successfully.');
+            return;
+        }
+
+        $this->info('Okay, migration file overwritten successfully.');
+    }
+
+    /**
+     * Returns the full path to the local migration file.
+     * 
+     * @return string
+     */
+    protected function localMigrationRealpath()
+    {
+        return __DIR__
+                . DIRECTORY_SEPARATOR
+                . '..'
+                . DIRECTORY_SEPARATOR
+                . 'migrations'
+                . DIRECTORY_SEPARATOR
+                . $this->migration_file;
+    }
+
+    /**
+     * Returns the full path to the published migration file.
+     * 
+     * @return string
+     */
+    protected function publishedMigrationRealpath()
+    {
+        return base_path(
+                'database'
+                . DIRECTORY_SEPARATOR
+                . 'migrations'
+                . DIRECTORY_SEPARATOR
+                . $this->migration_file
+            );
     }
 }
