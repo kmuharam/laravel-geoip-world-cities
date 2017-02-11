@@ -27,9 +27,8 @@
         "php" : "~5.5|~7.0"
     },
     "require-dev": {
-        "phpunit/phpunit" : "4.*",
-        "scrutinizer/ocular": "~1.1",
-        "squizlabs/php_codesniffer": "~2.3"
+        "phpunit/phpunit" : "~4.0||~5.0",
+        "squizlabs/php_codesniffer": "^2.3"
     },
     "autoload": {
         "psr-4": {
@@ -42,11 +41,15 @@
         }
     },
     "scripts": {
-        "test": "phpunit"
+        "test": "phpunit",
+        "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests",
+        "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
     },
     "support" : {
             "source" : "https://github.com/moharrum/laravel-geoip-world-cities",
             "issues" : "https://github.com/moharrum/laravel-geoip-world-cities/issues"
     },
-    "minimum-stability" : "dev"
+    "config": {
+        "sort-packages": true
+    }
 }
