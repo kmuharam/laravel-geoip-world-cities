@@ -13,7 +13,6 @@ namespace Moharrum\LaravelGeoIPWorldCities;
  */
 
 use Illuminate\Support\ServiceProvider;
-use Moharrum\LaravelGeoIPWorldCities\Helpers\Config;
 use Moharrum\LaravelGeoIPWorldCities\Console\CreateCitiesSeederCommand;
 use Moharrum\LaravelGeoIPWorldCities\Console\CreateCitiesMigrationCommand;
 
@@ -61,7 +60,7 @@ class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
     private function publishConfig()
     {
         $this->publishes([
-            Config::localConfigRealpath() => config_path(Config::$PUBLISHED_CONFIG_FILE_NAME)
+            __DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'config.php' => config_path('cities.php')
         ]);
     }
 
@@ -89,8 +88,8 @@ class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
     private function mergeConfig()
     {
         $this->mergeConfigFrom(
-            Config::localConfigRealpath(),
-            Config::configKey()
+            __DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'config.php',
+            'cities'
         );
     }
 
