@@ -4,11 +4,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Cities Defaults
+    | Cities Table Name
     |--------------------------------------------------------------------------
     |
-    | The following options controls the default cities
-    | options for your application.
+    | Below, you may change the default table cities name.
     |
     */
 
