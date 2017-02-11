@@ -33,7 +33,8 @@ class CreateCitiesTable extends Migration
                     ->nullable();
             
             $table->string('city')
-                    ->nullable();
+                    ->nullable()
+                    ->collation('utf8_unicode_ci');
             
             $table->string('city_ascii')
                     ->nullable();
