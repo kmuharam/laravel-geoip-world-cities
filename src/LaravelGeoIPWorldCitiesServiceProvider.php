@@ -69,7 +69,9 @@ class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
      */
     private function bind()
     {
-        if(((double) $this->app::VERSION) === 5.4) {
+        $thisApp = $this->app;
+
+        if(((double) $thisApp::VERSION) === 5.4) {
             $this->app->singleton('cities', function ($app) {
                 return new City;
             });
@@ -98,7 +100,9 @@ class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
      */
     private function registerMigrationCommand()
     {
-        if(((double) $this->app::VERSION) === 5.4) {
+        $thisApp = $this->app;
+
+        if(((double) $thisApp::VERSION) === 5.4) {
             $this->app->singleton('command.cities.migration', function ($app) {
                 return new CreateCitiesMigrationCommand;
             });
@@ -116,7 +120,9 @@ class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
      */
     private function registerSeederCommand()
     {
-        if(((double) $this->app::VERSION) === 5.4) {
+        $thisApp = $this->app;
+
+        if(((double) $thisApp::VERSION) === 5.4) {
             $this->app->singleton('command.cities.seeder', function ($app) {
                 return new CreateCitiesSeederCommand;
             });
