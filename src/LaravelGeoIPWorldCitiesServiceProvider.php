@@ -8,7 +8,7 @@ namespace Moharrum\LaravelGeoIPWorldCities;
  * Copyright (c) 2015 - 2017 LaravelGeoIPWorldCities
  *
  * @copyright  Copyright (c) 2015 - 2017 \Moharrum\LaravelGeoIPWorldCities
- * 
+ *
  * @license http://opensource.org/licenses/MIT MIT license
  */
 
@@ -27,7 +27,7 @@ class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
      * @var bool
      */
     protected $defer = false;
-    
+
     /**
      * Perform post-registration booting of services.
      *
@@ -69,17 +69,7 @@ class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
      */
     private function bind()
     {
-        $thisApp = $this->app;
-
-        if(((double) $thisApp::VERSION) === 5.4) {
-            $this->app->singleton('cities', function ($app) {
-                return new City;
-            });
-
-            return;
-        }
-
-        $this->app['cities'] = $this->app->share(function ($app) {
+        $this->app->singleton('cities', function ($app) {
             return new City;
         });
     }
@@ -100,17 +90,9 @@ class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
      */
     private function registerMigrationCommand()
     {
-        $thisApp = $this->app;
-
-        if(((double) $thisApp::VERSION) === 5.4) {
-            $this->app->singleton('command.cities.migration', function ($app) {
-                return new CreateCitiesMigrationCommand;
-            });
-        } else {
-            $this->app['command.cities.migration'] = $this->app->share(function($app) {
-                return new CreateCitiesMigrationCommand;
-            });
-        }
+        $this->app->singleton('command.cities.migration', function ($app) {
+            return new CreateCitiesMigrationCommand;
+        });
 
         $this->commands('command.cities.migration');
     }
@@ -120,17 +102,9 @@ class LaravelGeoIPWorldCitiesServiceProvider extends ServiceProvider
      */
     private function registerSeederCommand()
     {
-        $thisApp = $this->app;
-
-        if(((double) $thisApp::VERSION) === 5.4) {
-            $this->app->singleton('command.cities.seeder', function ($app) {
-                return new CreateCitiesSeederCommand;
-            });
-        } else {
-            $this->app['command.cities.seeder'] = $this->app->share(function($app) {
-                return new CreateCitiesSeederCommand;
-            });
-        }
+        $this->app->singleton('command.cities.seeder', function ($app) {
+            return new CreateCitiesSeederCommand;
+        });
 
         $this->commands('command.cities.seeder');
     }
