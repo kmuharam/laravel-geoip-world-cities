@@ -2,6 +2,10 @@
 
 All Notable changes to `moharrum/laravel-geoip-world-cities/releases` will be documented in this file.
 
+## 2.4 - 2019-11-26
+
+- Support for Laravel 6.0
+
 ## 2.3 - 2017-02-11
 
 Refactoring and re-organizing code.
