@@ -23,7 +23,7 @@
         }
     ],
     "require": {
-        "illuminate/support": "~6.0",
+        "illuminate/support": "~5|~6|~7",
         "php": "~5.5|~7.0"
     },
     "require-dev": {
@@ -51,5 +51,15 @@
     },
     "config": {
         "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Moharrum\\LaravelGeoIPWorldCities\\LaravelGeoIPWorldCitiesServiceProvider"
+            ],
+            "aliases": {
+                "Cities": "Moharrum\\LaravelGeoIPWorldCities\\Facade"
+            }
+        }
     }
 }

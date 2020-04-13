@@ -47,7 +47,7 @@ for the latest version.
 
 Run `composer update` to pull down laravel-geoip-world-cities.
 
-Edit `config/app.php` and add the `provider`
+Edit `config/app.php` and add the `provider` (ignore this step if you have package discovery enabled)
 
 ```php
     'providers' => [
@@ -85,13 +85,13 @@ To make sure the data is seeded insert the following code in `seeds/DatabaseSeed
 ```php
     // Seeding the cities
     $this->call(CitiesTableSeeder::class);
-    $this->command->info('Seeded the cities table ...'); 
+    $this->command->info('Seeded the cities table ...');
 ```
 
 You may now run:
 
     php artisan migrate --seed
-    
+
 After running this command the filled cities table will be available
 
 ## Table structure
@@ -116,7 +116,7 @@ If you are getting a `ReflectionException` when trying to seed
 
 ```php
     [ReflectionException]                   
-    Class CitiesTableSeeder does not exist 
+    Class CitiesTableSeeder does not exist
 ```
 
 run:
